@@ -1,0 +1,19 @@
+<template>
+    <lightning-card title="Create GetAccept Contract">
+        <div class="slds-m-around_medium">
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" variant="brand"></lightning-spinner>
+            </template>
+            <template if:true={error}>
+                <div class="slds-text-color_error">{error}</div>
+            </template>
+            <lightning-button
+                    label={labels.createContractButton}
+                    onclick={handleCreateContract}>
+            </lightning-button>
+            <template if:true={contractId}>
+                <div class="slds-m-top_medium">{labels.contractCreatedMessage} {contractId}</div>
+            </template>
+        </div>
+    </lightning-card>
+</template>
