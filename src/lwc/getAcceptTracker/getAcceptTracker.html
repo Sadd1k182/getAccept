@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="GetAccept Document Tracker">
+        <div class="slds-p-around_medium">
+            <template if:true={documents}>
+                <lightning-datatable
+                        key-field="Id"
+                        data={documents}
+                        columns={columns}
+                        onrowaction={handleRowAction}
+                        hide-checkbox-column>
+                </lightning-datatable>
+            </template>
+            <template if:false={documents}>
+                <p>{labels.noDocumentsFound}</p>
+            </template>
+            <template if:true={error}>
+                <p class="slds-text-color_destructive">Error: {error}</p>
+            </template>
+            <template if:true={isModalOpen}>
+                <c-modal show-modal={isModalOpen} onclose={closeModal}>
+                    <div slot="header">{dynamicEventTimelineTitle}</div>
+                    <ul slot="body" class="slds-list_vertical">
+                        <template for:each={formattedEvents} for:item="event">
+                            <li key={event.eventName} class="slds-item slds-grid slds-grid_align-spread">
+                                <span class="slds-text-body_regular">{event.eventName}</span>
+                                <span class="slds-text-body_small slds-text-color_weak">{event.formattedCreatedAt}</span>
+                            </li>
+                        </template>
+                    </ul>
+                    <div slot="footer" class="slds-grid slds-grid_align-spread">
+                        <div class="slds-grid">
+                            <lightning-button
+                                    label={labels.sendReminderButton}
+                                    onclick={handleSendReminder}
+                                    disabled={isReminderDisabled}
+                                    variant="brand"
+                                    class="slds-button_neutral slds-m-right_x-small">
+                            </lightning-button>
+                            <template if:true={isSendingReminder}>
+                                <div class="spinner-container">
+                                    <lightning-spinner alternative-text="Sending reminder..." variant="brand"></lightning-spinner>
+                                </div>
+                            </template>
+                            <lightning-button
+                                    label={labels.closeButton}
+                                    variant="neutral"
+                                    onclick={closeModal}
+                                    class="slds-button_neutral">
+                            </lightning-button>
+                        </div>
+                    </div>
+                </c-modal>
+            </template>
+        </div>
+    </lightning-card>
+</template>
