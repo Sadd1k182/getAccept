@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customSettingsType>Hierarchy</customSettingsType>
+    <description>Custom Setting to securely store GetAccept API credentials</description>
+    <enableFeeds>false</enableFeeds>
+    <fields>
+        <fullName>BaseUrl__c</fullName>
+        <description>BaseUrl for getAccept Api</description>
+        <label>BaseUrl</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Url</type>
+    </fields>
+    <fields>
+        <fullName>Email__c</fullName>
+        <description>Email for getAccept api</description>
+        <externalId>false</externalId>
+        <label>Email</label>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Email</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>Password__c</fullName>
+        <description>Password for getAccept</description>
+        <externalId>false</externalId>
+        <label>Password</label>
+        <length>50</length>
+        <required>false</required>
+        <trackTrending>false</trackTrending>
+        <type>Text</type>
+        <unique>false</unique>
+    </fields>
+    <label>GetAcceptSettings</label>
+    <visibility>Public</visibility>
+</CustomObject>
